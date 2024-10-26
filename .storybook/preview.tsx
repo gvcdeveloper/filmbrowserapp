@@ -1,7 +1,7 @@
-import type { Preview } from '@storybook/react'
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-import '../src/styles/main.scss'
-import React from 'react'
+import type { Preview } from '@storybook/react';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import '../src/styles/style.scss';
+import React from 'react';
 
 const customViewports = {
   sm: {
@@ -39,7 +39,7 @@ const customViewports = {
       height: '100%',
     },
   },
-}
+};
 
 const preview: Preview = {
   parameters: {
@@ -58,9 +58,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => {
-      return <Story />
+      return <Story />;
     },
   ],
-}
+};
 
-export default preview
+export default preview;

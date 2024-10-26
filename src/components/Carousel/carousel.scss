@@ -1,0 +1,129 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.carousel-title {
+  margin-bottom: 8px;
+  font-size: vars.$font-size-lg;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: vars.$border-radius;
+  box-sizing: border-box;
+
+  button {
+    height: 100%;
+    width: 35px;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 4px;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0;
+      right: 0;
+      bottom: 5px;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      border-radius: vars.$border-radius;
+    }
+
+    &:hover {
+      opacity: 1;
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      color: vars.$light-color;
+    }
+  }
+
+  button:first-of-type {
+    right: 0;
+  }
+
+  button:last-of-type {
+    left: 0;
+  }
+
+  .carousel-items {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    padding: 5px 0;
+    margin-right: -12px;
+
+    .carousel-item-title {
+      width: 100%;
+      color: vars.$light-color;
+      position: absolute;
+      padding-left: 12px;
+      top: 70%;
+      z-index: 1;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding-right: 12px;
+      border-radius: vars.$border-radius;
+
+      &:last-of-type {
+        padding-right: 0;
+      }
+
+      img {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        border-radius: vars.$border-radius;
+        object-fit: cover;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+        &:hover {
+          transform: scale(1.05);
+          border: 2px solid gray;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: vars.$breakpoint-md) {
+  .carousel {
+    .carousel-items {
+      .carousel-item {
+        min-width: 50%;
+      }
+    }
+  }
+}
+
+@media (min-width: vars.$breakpoint-lg) {
+  .carousel {
+    .carousel-items {
+      .carousel-item {
+        min-width: 25%;
+      }
+    }
+  }
+}

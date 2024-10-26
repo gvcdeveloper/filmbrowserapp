@@ -1,5 +1,12 @@
-const HelloWorld = (): JSX.Element => {
-  return <div>¡Hello, world!</div>
-}
+import { useEffect } from 'react';
+import { fetchFilms } from '../../services/filmServices/filmService';
 
-export default HelloWorld
+const HelloWorld = (): JSX.Element => {
+  useEffect(() => {
+    const data = fetchFilms({ id: 12 });
+  }, []);
+
+  return <div>¡Hello, world!</div>;
+};
+
+export default HelloWorld;
