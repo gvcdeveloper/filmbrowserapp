@@ -1,0 +1,30 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #4a90e2;
+  color: white;
+  z-index: 1000;
+
+  &__logo {
+    img {
+      max-width: 150px;
+      height: auto;
+    }
+  }
+
+  &__wishlist {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+}

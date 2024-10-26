@@ -9,7 +9,6 @@ describe('Carousel component', () => {
     render(
       <Carousel
         items={sliderItemsMock}
-        itemsPerPage={4}
         carouselTitle="Horror movies"
         handleOnClick={onClickSpy}
       />
@@ -27,7 +26,6 @@ describe('Carousel component', () => {
     render(
       <Carousel
         items={sliderItemsMock}
-        itemsPerPage={4}
         carouselTitle="Horror movies"
         handleOnClick={onClickSpy}
       />
@@ -48,7 +46,6 @@ describe('Carousel component', () => {
     render(
       <Carousel
         items={sliderItemsMock}
-        itemsPerPage={4}
         carouselTitle="Horror movies"
         handleOnClick={onClickSpy}
       />

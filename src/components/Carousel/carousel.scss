@@ -113,6 +113,9 @@
     .carousel-items {
       .carousel-item {
         min-width: 50%;
+        &.mono-slider {
+          min-width: 100%;
+        }
       }
     }
   }
@@ -123,6 +126,9 @@
     .carousel-items {
       .carousel-item {
         min-width: 25%;
+        &.mono-slider {
+          min-width: 100%;
+        }
       }
     }
   }

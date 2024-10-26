@@ -13,7 +13,6 @@ type Story = StoryObj<typeof meta>;
 
 export const SliderItems: Story = {
   args: {
-    itemsPerPage: 4,
     carouselTitle: 'Horror movies',
     handleOnClick: () => {},
     items: sliderItemsMock,
