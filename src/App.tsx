@@ -2,6 +2,7 @@ import Carousel from './components/Carousel/Carousel';
 import Header from './components/Header/Header';
 import Layout from './components/Layout/Layout';
 import { sliderItemsMock } from './__mocks__/sliderItemsMock';
+import HelloWorld from './components/HelloWorld/HelloWorld';
 
 function App() {
   return (

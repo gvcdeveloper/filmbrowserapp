@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
-import { fetchFilms } from '../../services/filmServices/filmService';
+import {
+  fetchFilmsByGenre,
+  fetchFilmByID,
+} from '../../services/filmServices/filmService';
 
 const HelloWorld = (): JSX.Element => {
   useEffect(() => {
-    const data = fetchFilms({ id: 12 });
+    const data = fetchFilmByID({ id: 912649 });
+    console.log(data);
   }, []);
 
   return <div>¡Hello, world!</div>;
