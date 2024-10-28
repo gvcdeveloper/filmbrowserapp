@@ -4,6 +4,7 @@ import Carousel from '../../components/Carousel/Carousel';
 import { AppDispatch } from '../../redux/store';
 import { fetchGenresAction } from '../../redux/slices/genresSlice';
 import { fetchFilmsByGenreAction } from '../../redux/slices/filmsSlice';
+import './homePage.scss';
 
 const HomePage = (): JSX.Element => {
   const genres = import.meta.env.VITE_GENRES.split(',');
@@ -42,11 +43,13 @@ const HomePage = (): JSX.Element => {
       {filmsByGenre &&
         genres?.map((genreName: string) => {
           return (
-            <Carousel
-              carouselTitle={`${genreName} Movies`}
-              items={filmsByGenre[genreName] || []}
-              handleOnClick={() => {}}
-            />
+            <div className="film-section">
+              <Carousel
+                carouselTitle={`${genreName} Movies`}
+                items={filmsByGenre[genreName] || []}
+                handleOnClick={() => {}}
+              />
+            </div>
           );
         })}
     </>

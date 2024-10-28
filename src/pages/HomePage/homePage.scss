@@ -1,0 +1,17 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.film-section {
+  margin: 0.5rem 0;
+}
+
+@media (min-width: vars.$breakpoint-md) {
+  .film-section {
+    margin: 1rem 0;
+  }
+}
+
+@media (min-width: vars.$breakpoint-lg) {
+  .film-section {
+    margin: 0.5rem 0;
+  }
+}

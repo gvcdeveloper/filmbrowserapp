@@ -20,12 +20,14 @@
 
 @media (min-width: vars.$breakpoint-md) {
   .header {
-    padding: 0 vars.$md-padding;
+    padding: 0 vars.$lg-padding;
+    height: 80px;
   }
 }
 
 @media (min-width: vars.$breakpoint-lg) {
   .header {
-    padding: 0 vars.$lg-padding;
+    padding: 0 vars.$xl-padding;
+    height: 80px;
   }
 }
