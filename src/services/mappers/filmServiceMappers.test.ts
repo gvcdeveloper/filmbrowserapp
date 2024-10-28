@@ -40,7 +40,8 @@ describe('FilmServiceMappers functions', () => {
       expect(result).toEqual({
         id: 1,
         title: 'Venom',
-        pathURL: '/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
+        imgUrl:
+          'https://image.tmdb.org/t/p/w500/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
       });
     });
   });

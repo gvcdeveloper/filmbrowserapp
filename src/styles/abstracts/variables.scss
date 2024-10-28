@@ -12,18 +12,24 @@ $font-weight-normal: 400;
 $font-weight-bold: 700;
 
 //Font-Sizes
-$font-size-sm: 0.875rem; // 14px
-$font-size-md: 1rem; // 16px
-$font-size-lg: 1.25rem; // 20px
+$font-size-sm: 0.5rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
 
 //Variants
 $primary-color: #007bff;
-$secondary-color: #6c757d;
-$success-color: #28a745;
-$info-color: #17a2b8;
-$warning-color: #ffc107;
-$danger-color: #dc3545;
 $light-color: #f8f9fa;
-$dark-color: #343a40;
+$black: #605e5e;
+$white: #fff;
+$gray: #e0e0e0;
+$gray2: #c9d1d3;
+$gray3: #292727;
 
+//Borders
 $border-radius: 4px;
+
+//Paddings
+$sm-padding: 1rem;
+$md-padding: 2rem;
+$lg-padding: 3rem;

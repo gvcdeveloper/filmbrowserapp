@@ -1,11 +1,11 @@
 import { apiFetch } from '../apiFetch';
 import { GET_GENRES } from '../endpoints';
 import { genresFromAPIMapper } from '../mappers/genreServiceMappers';
-import { GenreDTO } from '../../types/DTO/genres';
+import { GenreDTO, GenreResponseDTO } from '../../types/DTO/genres';
 import { Genre } from '../../types/models/genre';
 
 interface GenreListProps {
-  lang: string;
+  lang?: string;
 }
 
 export const fetchGenreList = async ({
@@ -17,9 +17,9 @@ export const fetchGenreList = async ({
     },
   };
   const url = `${GET_GENRES}?language=${lang}`;
-  const results = await apiFetch<GenreDTO[]>(url, options);
+  const { genres } = await apiFetch<GenreResponseDTO>(url, options);
 
-  const mappedResults = results?.map((result: GenreDTO) =>
+  const mappedResults = genres?.map((result: GenreDTO) =>
     genresFromAPIMapper(result)
   );
 

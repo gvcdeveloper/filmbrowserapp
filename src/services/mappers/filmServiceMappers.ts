@@ -1,8 +1,11 @@
 import { FilmByGenreDTO, FilmByIdDTO } from '../../types/DTO/films';
 
+const generateImgURL = (backdropPath: string) =>
+  `${import.meta.env.VITE_IMG_URL_BASE}/w500${backdropPath}`;
+
 export const moviesByGenresFromAPIMapper = (movieObject: FilmByGenreDTO) => {
   return {
-    pathURL: movieObject.backdrop_path,
+    imgUrl: generateImgURL(movieObject.backdrop_path),
     title: movieObject.title,
     id: movieObject.id,
   };
