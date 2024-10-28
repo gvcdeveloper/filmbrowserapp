@@ -1,5 +1,8 @@
 export type Film = {
   id: number;
   title: string;
-  imgBackdropPath: string;
+  imgUrl: string;
+  posterImgURL?: string;
+  overview?: string;
+  adult?: boolean;
 };

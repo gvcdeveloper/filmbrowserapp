@@ -1,10 +1,11 @@
-import HelloWorld from './components/HelloWorld/HelloWorld';
+import Layout from './components/Layout/Layout';
+import HomePage from './pages/HomePage/HomePage';
 
 function App() {
   return (
-    <div>
-      <HelloWorld />
-    </div>
+    <Layout>
+      <HomePage />
+    </Layout>
   );
 }
 

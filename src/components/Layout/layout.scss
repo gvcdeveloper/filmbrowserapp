@@ -1,0 +1,35 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: vars.$gray3;
+
+  main {
+    flex: 1;
+    padding: vars.$sm-padding;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: vars.$black;
+    padding: 0 vars.$sm-padding;
+    color: vars.$white;
+  }
+}
+
+@media (min-width: vars.$breakpoint-md) {
+  .layout {
+    main {
+      padding: 0 vars.$md-padding;
+    }
+  }
+}
+
+@media (min-width: vars.$breakpoint-lg) {
+  .layout {
+    main {
+      padding: 0 vars.$lg-padding;
+    }
+  }
+}

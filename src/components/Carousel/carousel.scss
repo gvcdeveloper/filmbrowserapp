@@ -2,7 +2,7 @@
 
 .carousel-title {
   margin-bottom: 8px;
-  font-size: vars.$font-size-lg;
+  font-size: vars.$font-size-xl;
 }
 
 .carousel {
@@ -11,6 +11,7 @@
   width: 100%;
   border-radius: vars.$border-radius;
   box-sizing: border-box;
+  color: vars.$white;
 
   button {
     height: 100%;
@@ -71,17 +72,22 @@
 
     .carousel-item-title {
       width: 100%;
-      color: vars.$light-color;
       position: absolute;
       padding-left: 12px;
       top: 70%;
       z-index: 1;
+      font-size: vars.$font-size-lg;
+      max-width: 250px;
+      line-height: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .carousel-item {
       min-width: 100%;
       box-sizing: border-box;
-      padding-right: 12px;
+      padding-right: 16px;
       border-radius: vars.$border-radius;
 
       &:last-of-type {
@@ -100,7 +106,7 @@
 
         &:hover {
           transform: scale(1.05);
-          border: 2px solid gray;
+          border: 2px solid vars.$white;
           z-index: 1;
         }
       }
@@ -113,6 +119,9 @@
     .carousel-items {
       .carousel-item {
         min-width: 50%;
+        &.mono-slider {
+          min-width: 100%;
+        }
       }
     }
   }
@@ -123,6 +132,9 @@
     .carousel-items {
       .carousel-item {
         min-width: 25%;
+        &.mono-slider {
+          min-width: 100%;
+        }
       }
     }
   }

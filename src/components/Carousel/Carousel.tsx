@@ -3,8 +3,10 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './carousel.scss';
+import Image from './Image';
+import Loader from './Loader/Loader';
 
 type Slide = {
   title: string;
@@ -14,23 +16,45 @@ type Slide = {
 
 interface CarouselProps {
   items: Slide[];
-  itemsPerPage: number;
   carouselTitle?: string;
   handleOnClick: () => void;
+  monoSlider?: boolean;
 }
 
 const Carousel = ({
   items,
-  itemsPerPage,
   carouselTitle,
   handleOnClick,
+  monoSlider = false,
 }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [loading, setLoading] = useState(true);
 
-  const nextSlide = useCallback(
-    () => setCurrentIndex(() => (currentIndex + itemsPerPage) % items.length),
-    [currentIndex, itemsPerPage, items.length]
-  );
+  const updateItemsPerPage = useCallback(() => {
+    const width = window.innerWidth;
+
+    if (width < 640) {
+      setItemsPerPage(1);
+    } else if (width < 1024) {
+      setItemsPerPage(2);
+    } else {
+      setItemsPerPage(4);
+    }
+  }, []);
+
+  useEffect(() => {
+    updateItemsPerPage();
+    window.addEventListener('resize', updateItemsPerPage);
+
+    return () => {
+      window.removeEventListener('resize', updateItemsPerPage);
+    };
+  }, []);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex(() => (currentIndex + itemsPerPage) % items.length);
+  }, [currentIndex, itemsPerPage, items.length]);
 
   const prevSlide = useCallback(
     () =>
@@ -49,13 +73,14 @@ const Carousel = ({
         <div
           className="carousel-items"
           style={{
-            transform: `translateX(-${(currentIndex / items.length) * 100 * itemsPerPage}%)`,
+            transform: `translateX(-${(currentIndex * 100) / itemsPerPage}%)`,
+            transition: 'transform 0.3s ease-in-out',
           }}
         >
           {items.map((item: Slide, index: number) => (
             <div
               key={`${index}-${item.id}`}
-              className="carousel-item"
+              className={`carousel-item ${monoSlider ? 'mono-slider' : 'multi-slider'}`}
               onClick={handleOnClick}
             >
               <h4
@@ -63,7 +88,12 @@ const Carousel = ({
               >
                 {item.title}
               </h4>
-              <img src={item.imgUrl} alt={item.title} loading="lazy" />
+              {loading && <Loader />}
+              <Image
+                src={item.imgUrl}
+                alt={item.title}
+                setLoading={setLoading}
+              />
             </div>
           ))}
         </div>

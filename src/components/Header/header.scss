@@ -1,0 +1,31 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  background-color: vars.$gray3;
+  color: vars.$gray;
+  padding: 0 vars.$sm-padding;
+
+  .wishlist {
+    cursor: pointer;
+
+    &:hover {
+      color: vars.$white;
+    }
+  }
+}
+
+@media (min-width: vars.$breakpoint-md) {
+  .header {
+    padding: 0 vars.$md-padding;
+  }
+}
+
+@media (min-width: vars.$breakpoint-lg) {
+  .header {
+    padding: 0 vars.$lg-padding;
+  }
+}

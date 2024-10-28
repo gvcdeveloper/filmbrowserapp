@@ -11,9 +11,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SliderItems: Story = {
+export const Default: Story = {
   args: {
-    itemsPerPage: 4,
     carouselTitle: 'Horror movies',
     handleOnClick: () => {},
     items: sliderItemsMock,
