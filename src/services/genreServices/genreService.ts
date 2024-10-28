@@ -10,7 +10,7 @@ interface GenreListProps {
 
 export const fetchGenreList = async ({
   lang = 'en-US',
-}: GenreListProps): Promise<Genre[]> => {
+}: GenreListProps): Promise<{ [name: string]: number }> => {
   const options = {
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_TOKEN}`,
@@ -19,9 +19,7 @@ export const fetchGenreList = async ({
   const url = `${GET_GENRES}?language=${lang}`;
   const { genres } = await apiFetch<GenreResponseDTO>(url, options);
 
-  const mappedResults = genres?.map((result: GenreDTO) =>
-    genresFromAPIMapper(result)
-  );
+  const mappedResults = genresFromAPIMapper(genres);
 
   return mappedResults;
 };

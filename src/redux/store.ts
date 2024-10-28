@@ -6,7 +6,7 @@ import wishlistReducer from './slices/wishlistSlice';
 
 const store = configureStore({
   reducer: {
-    films: filmsReducer,
+    filmsByGenre: filmsReducer,
     genres: genresReducer,
     filmDetail: filmDetailReducer,
     wishlist: wishlistReducer,
