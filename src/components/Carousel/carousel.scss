@@ -26,24 +26,10 @@
     opacity: 0;
     transition: opacity 0.3s ease;
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 5px;
-      left: 0;
-      right: 0;
-      bottom: 5px;
-      background-color: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
-      border-radius: vars.$border-radius;
-    }
-
     &:hover {
       opacity: 1;
       &::before {
-        opacity: 1;
+        opacity: 0.8;
       }
     }
 
@@ -68,7 +54,6 @@
     display: flex;
     transition: transform 0.5s ease-in-out;
     padding: 5px 0;
-    margin-right: -12px;
 
     .carousel-item-title {
       width: 100%;
@@ -87,7 +72,7 @@
     .carousel-item {
       min-width: 100%;
       box-sizing: border-box;
-      padding-right: 16px;
+      padding: 0;
       border-radius: vars.$border-radius;
 
       &:last-of-type {
@@ -105,7 +90,7 @@
         transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 
         &:hover {
-          transform: scale(1.05);
+          transform: scale(1);
           border: 2px solid vars.$white;
           z-index: 1;
         }
@@ -115,12 +100,36 @@
 }
 
 @media (min-width: vars.$breakpoint-md) {
+  .carousel-title {
+    padding-left: 6px;
+  }
+
   .carousel {
+    padding: 0;
+
+    button:first-of-type {
+      right: 12px;
+    }
+
+    button:last-of-type {
+      left: 12px;
+    }
+
     .carousel-items {
       .carousel-item {
+        padding: 8px;
         min-width: 50%;
+
         &.mono-slider {
           min-width: 100%;
+        }
+
+        img {
+          &:hover {
+            transform: scale(1.05);
+            border: 2px solid vars.$white;
+            z-index: 1;
+          }
         }
       }
     }
@@ -128,12 +137,37 @@
 }
 
 @media (min-width: vars.$breakpoint-lg) {
+  .carousel-title {
+    padding-left: 12px;
+    margin-bottom: 0;
+  }
+
   .carousel {
+    padding: 8px;
+
+    button:first-of-type {
+      right: 16px;
+    }
+
+    button:last-of-type {
+      left: 16px;
+    }
+
     .carousel-items {
       .carousel-item {
+        padding: 8px;
         min-width: 25%;
+
         &.mono-slider {
           min-width: 100%;
+        }
+
+        img {
+          &:hover {
+            transform: scale(1.05);
+            border: 2px solid vars.$white;
+            z-index: 1;
+          }
         }
       }
     }

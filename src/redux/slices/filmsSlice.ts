@@ -5,41 +5,26 @@ import { fetchGenresAction } from './genresSlice';
 import { RootState } from '../store';
 
 interface FilmsState {
-  films: Film[];
+  data: { [genreName: string]: Film[] };
   loading: boolean;
   error: string | null;
 }
 
 const initialState: FilmsState = {
-  films: [],
+  data: {},
   loading: false,
   error: null,
 };
 
 export const fetchFilmsByGenreAction = createAsyncThunk(
-  'films/fetchFilmsByGenreAction',
-  async (genresIds: number[]) => {
+  'filmsByGenre/fetchFilmsByGenreAction',
+  async (genre: { id: number; name: string }, { getState }) => {
     const response = await fetchFilmsByGenre({
       lang: 'en-US',
-      genreIds: genresIds,
+      genreId: genre.id,
     });
-    return response;
-  }
-);
 
-export const fetchGenresAndFilmsAction = createAsyncThunk<
-  void,
-  string[],
-  { state: RootState }
->(
-  'films/fetchGenresAndFilmsAction',
-  async (genresNames, { dispatch, getState }) => {
-    await dispatch(fetchGenresAction());
-    const genres = getState().genres.data;
-    const genresIds = genres
-      .filter((genre: any) => genresNames.includes(genre.name))
-      .map((i: any) => i.id);
-    dispatch(fetchFilmsByGenreAction(genresIds));
+    return { genre: genre.name, films: response };
   }
 );
 
@@ -55,7 +40,9 @@ const filmsSlice = createSlice({
       })
       .addCase(fetchFilmsByGenreAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.films = action.payload;
+
+        const { genre, films } = action.payload;
+        state.data[genre] = films;
       })
       .addCase(fetchFilmsByGenreAction.rejected, (state, action) => {
         state.loading = false;

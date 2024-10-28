@@ -8,7 +8,7 @@ import {
 import { FilmByGenreDTO, FilmByIdDTO } from '../../types/DTO/films';
 
 interface FetchFilmsByGenreProps {
-  genreIds: number[];
+  genreId: number;
   lang?: string;
 }
 
@@ -18,7 +18,7 @@ interface FetchFilmsByIdProps {
 }
 
 export const fetchFilmsByGenre = async ({
-  genreIds,
+  genreId,
   lang = 'en-US',
 }: FetchFilmsByGenreProps): Promise<Film[]> => {
   const options = {
@@ -26,8 +26,8 @@ export const fetchFilmsByGenre = async ({
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_TOKEN}`,
     },
   };
-  const genreIdParams = genreIds.join(',');
-  const url = `${GET_MOVIES_BY_GENRE}?language=${lang}&with_genres=${genreIdParams}`;
+
+  const url = `${GET_MOVIES_BY_GENRE}?language=${lang}&with_genres=${genreId}`;
   const results = await apiFetch<FilmByGenreDTO[]>(url, options);
 
   const mappedResults = results?.map((result: FilmByGenreDTO) =>

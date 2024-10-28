@@ -6,14 +6,7 @@ interface ImageProps {
 
 export const Image = ({ src, alt, setLoading }: ImageProps) => {
   return (
-    <div>
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        onLoad={() => setLoading(false)}
-      />
-    </div>
+    <img src={src} alt={alt} loading="lazy" onLoad={() => setLoading(false)} />
   );
 };
 

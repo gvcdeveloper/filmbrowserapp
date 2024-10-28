@@ -3,13 +3,13 @@ import { fetchGenreList } from '../../services/genreServices/genreService';
 import { Genre } from '../../types/models/genre';
 
 interface GenreState {
-  data: Genre[];
+  data: { [name: string]: number };
   loading: boolean;
   error: string | null;
 }
 
 const initialState: GenreState = {
-  data: [],
+  data: {},
   loading: false,
   error: null,
 };

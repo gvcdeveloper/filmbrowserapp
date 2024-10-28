@@ -1,0 +1,40 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.error-page {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  background-color: vars.$black;
+  color: vars.$white;
+}
+
+.error-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.error-page p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.error-page__button {
+  background-color: vars.$black;
+  color: vars.$white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.error-page__button {
+  &:hover {
+    background-color: vars.$gray3;
+  }
+}

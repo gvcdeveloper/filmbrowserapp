@@ -1,29 +1,57 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../../components/Header/Header';
 import Carousel from '../../components/Carousel/Carousel';
-import { fetchGenresAndFilmsAction } from '../../redux/slices/filmsSlice';
 import { AppDispatch } from '../../redux/store';
+import { fetchGenresAction } from '../../redux/slices/genresSlice';
+import { fetchFilmsByGenreAction } from '../../redux/slices/filmsSlice';
+import './homePage.scss';
 
 const HomePage = (): JSX.Element => {
+  const genres = import.meta.env.VITE_GENRES.split(',');
   const dispatch = useDispatch<AppDispatch>();
-  const { films, loading, error } = useSelector((state: any) => state.films);
+  const { data } = useSelector((state: any) => state.genres);
+  const {
+    data: filmsByGenre,
+    loading,
+    error,
+  } = useSelector((state: any) => state.filmsByGenre);
 
   useEffect(() => {
-    const genresNames = ['Horror', 'Animation', 'Drama'];
-    dispatch(fetchGenresAndFilmsAction(genresNames));
+    const fetchInitialGenreList = async () => {
+      await dispatch(fetchGenresAction());
+    };
+    fetchInitialGenreList();
   }, [dispatch]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (data['Horror']) {
+        await genres.forEach((genreName: string) => {
+          const genre = { name: genreName, id: data[genreName] };
+          dispatch(fetchFilmsByGenreAction(genre));
+        });
+      }
+    };
+    fetchData();
+  }, [dispatch, data]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <>
-      <Carousel
-        carouselTitle="Horror Movies"
-        items={films}
-        handleOnClick={() => {}}
-      />
+      {filmsByGenre &&
+        genres?.map((genreName: string) => {
+          return (
+            <div className="film-section">
+              <Carousel
+                carouselTitle={`${genreName} Movies`}
+                items={filmsByGenre[genreName] || []}
+                handleOnClick={() => {}}
+              />
+            </div>
+          );
+        })}
     </>
   );
 };
