@@ -5,6 +5,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useEffect, useState } from 'react';
 import './carousel.scss';
+import Image from './Image';
+import Loader from './Loader/Loader';
 
 type Slide = {
   title: string;
@@ -27,6 +29,7 @@ const Carousel = ({
 }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [loading, setLoading] = useState(true);
 
   const updateItemsPerPage = useCallback(() => {
     const width = window.innerWidth;
@@ -85,7 +88,12 @@ const Carousel = ({
               >
                 {item.title}
               </h4>
-              <img src={item.imgUrl} alt={item.title} loading="lazy" />
+              {loading && <Loader />}
+              <Image
+                src={item.imgUrl}
+                alt={item.title}
+                setLoading={setLoading}
+              />
             </div>
           ))}
         </div>
