@@ -17,6 +17,7 @@ export const movieByIdFromAPIMapper = (movieObject: FilmByIdDTO) => {
     title: movieObject.title,
     adult: movieObject.adult,
     overview: movieObject.overview,
-    posterImgURL: movieObject.poster_path,
+    posterImgURL: generateImgURL(movieObject.poster_path),
+    tagline: movieObject.tagline,
   };
 };

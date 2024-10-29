@@ -17,7 +17,7 @@ type Slide = {
 interface CarouselProps {
   items: Slide[];
   carouselTitle?: string;
-  handleOnClick: () => void;
+  handleOnClick: (id: number) => void;
   monoSlider?: boolean;
 }
 
@@ -81,7 +81,7 @@ const Carousel = ({
             <div
               key={`${index}-${item.id}`}
               className={`carousel-item ${monoSlider ? 'mono-slider' : 'multi-slider'}`}
-              onClick={handleOnClick}
+              onClick={() => handleOnClick(item.id)}
             >
               <h4
                 className={`carousel-item-title ${index >= currentIndex && index < currentIndex + itemsPerPage ? 'visible' : 'invisible'}`}

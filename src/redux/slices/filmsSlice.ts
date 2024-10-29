@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Film } from '../../types/models/films';
 import { fetchFilmsByGenre } from '../../services/filmServices/filmService';
-import { fetchGenresAction } from './genresSlice';
-import { RootState } from '../store';
 
 interface FilmsState {
   data: { [genreName: string]: Film[] };
@@ -18,7 +16,7 @@ const initialState: FilmsState = {
 
 export const fetchFilmsByGenreAction = createAsyncThunk(
   'filmsByGenre/fetchFilmsByGenreAction',
-  async (genre: { id: number; name: string }, { getState }) => {
+  async (genre: { id: number; name: string }) => {
     const response = await fetchFilmsByGenre({
       lang: 'en-US',
       genreId: genre.id,

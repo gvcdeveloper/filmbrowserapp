@@ -3,13 +3,13 @@ import { Film } from '../../types/models/films';
 import { fetchFilmByID } from '../../services/filmServices/filmService';
 
 interface FilmDetailState {
-  filmDetail: Omit<Film, 'imgUrl'> | null;
+  data: Omit<Film, 'imgUrl'> | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: FilmDetailState = {
-  filmDetail: null,
+  data: null,
   loading: false,
   error: null,
 };
@@ -34,7 +34,7 @@ const filmDetailSlice = createSlice({
       })
       .addCase(fetchFilmByIDAction.fulfilled, (state, action) => {
         state.loading = false;
-        state.filmDetail = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchFilmByIDAction.rejected, (state, action) => {
         state.loading = false;

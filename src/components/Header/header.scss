@@ -9,6 +9,10 @@
   color: vars.$gray;
   padding: 0 vars.$sm-padding;
 
+  .logo-wrapper {
+    cursor: pointer;
+  }
+
   .wishlist {
     cursor: pointer;
 

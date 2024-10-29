@@ -4,6 +4,7 @@ export type FilmByIdDTO = {
   title: string;
   overview: string;
   adult: boolean;
+  tagline?: string;
 };
 
 export type FilmByGenreDTO = {
