@@ -7,7 +7,7 @@ describe('Card Component', () => {
     imgUrl: 'https://image.tmdb.org/t/p/w500/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
     title: 'Venom',
     isInWishlist: false,
-    onWishlistToggle: vi.fn(),
+    handleOnClick: vi.fn(),
   };
 
   it('renders correctly with image, title, and wishlist icon', () => {

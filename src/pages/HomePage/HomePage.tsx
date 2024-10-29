@@ -62,9 +62,9 @@ const HomePage = (): JSX.Element => {
   return (
     <>
       {filmsByGenre &&
-        genres?.map((genreName: string) => {
+        genres?.map((genreName: string, index: number) => {
           return (
-            <div className="film-section">
+            <div className="film-section" key={`${genreName}-${index}`}>
               <Carousel
                 carouselTitle={`${genreName} Movies`}
                 items={filmsByGenre[genreName] || []}

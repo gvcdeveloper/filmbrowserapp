@@ -3,11 +3,27 @@
 .wishlist-page {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
 
   .card-wrapper {
     margin: 20px auto;
+  }
+}
+
+@media (min-width: vars.$breakpoint-md) {
+  .wishlist-page {
+    .card-wrapper {
+      margin: 20px auto;
+    }
+  }
+}
+
+@media (min-width: vars.$breakpoint-lg) {
+  .wishlist-page {
+    .card-wrapper {
+      margin: 20px;
+    }
   }
 }

@@ -5,6 +5,7 @@ import filmDetailReducer from './slices/filmDetailSlice';
 import wishlistReducer from './slices/wishlistSlice';
 import { persistStore, persistReducer } from 'redux-persist';
 import { combineReducers } from 'redux';
+
 import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
@@ -24,6 +25,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 const persistor = persistStore(store);

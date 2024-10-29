@@ -6,14 +6,22 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 interface CardProps {
   imgUrl: string;
   title: string;
+  handleOnClick: () => void;
+  wishlisted?: boolean;
 }
 
-export const Card = ({ imgUrl, title }: CardProps): JSX.Element => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+export const Card = ({
+  imgUrl,
+  title,
+  handleOnClick,
+  wishlisted = false,
+}: CardProps): JSX.Element => {
+  const [isWishlisted, setIsWishlisted] = useState(wishlisted);
 
-  const handleWishlistToggle = useCallback(() => {
+  const handleWishlistToggle = () => {
+    handleOnClick();
     setIsWishlisted(!isWishlisted);
-  }, [isWishlisted, setIsWishlisted]);
+  };
 
   return (
     <div className="card">

@@ -3,7 +3,7 @@ import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage/HomePage';
 import FilmDetailPage from './pages/FilmDetailPage/FilmDetailPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
-import WishListPage from './pages/WishListPage/WishListpage';
+import WishListPage from './pages/WishListPage/WishListPage';
 
 function App() {
   return (
