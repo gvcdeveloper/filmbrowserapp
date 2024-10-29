@@ -7,10 +7,11 @@ import { addToWishlist } from '../../redux/slices/wishlistSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Image from '../../components/Carousel/Image';
+import { categoryClassMapper } from '../../utils/categoryClassMapper';
 import './filmDetailPage.scss';
 
 const FilmDetailPage = (): JSX.Element => {
-  const { id } = useParams<{ id: string }>();
+  const { id, genre } = useParams<{ id: string; genre: string }>();
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector((state: RootState) => state.filmDetail);
   const { data: wishlistedData } = useSelector(
@@ -18,6 +19,11 @@ const FilmDetailPage = (): JSX.Element => {
   );
   const [loading, setLoading] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+
+  const genresClassDifferentiation: { [key: string]: string } =
+    categoryClassMapper('detail-view', import.meta.env.VITE_GENRES.split(','));
+  const customClass =
+    genresClassDifferentiation[genre?.toLowerCase() || 'default'];
 
   useEffect(() => {
     if (id) {
@@ -48,7 +54,7 @@ const FilmDetailPage = (): JSX.Element => {
   }, [isWishlisted, setIsWishlisted, data]);
 
   return (
-    <div className="detail-view">
+    <div className={`detail-view ${customClass}`}>
       <Image
         src={data?.posterImgURL || ''}
         alt="Detail"

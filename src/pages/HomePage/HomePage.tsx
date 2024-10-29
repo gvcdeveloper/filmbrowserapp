@@ -19,8 +19,8 @@ const HomePage = (): JSX.Element => {
     error,
   } = useSelector((state: RootState) => state.filmsByGenre);
 
-  const handleGoToDetails = (id: number) => {
-    navigate(`/details/${id}`);
+  const handleGoToDetails = (genre: string) => (id: number) => {
+    navigate(`/details/${genre.toLowerCase()}/${id}`);
   };
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const HomePage = (): JSX.Element => {
               <Carousel
                 carouselTitle={`${genreName} Movies`}
                 items={filmsByGenre[genreName] || []}
-                handleOnClick={handleGoToDetails}
+                handleOnClick={handleGoToDetails(genreName)}
               />
             </div>
           );

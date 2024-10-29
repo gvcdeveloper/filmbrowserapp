@@ -91,3 +91,38 @@
     }
   }
 }
+
+.detail-view--horror {
+  color: vars.$horror-color;
+
+  .detail-view-header {
+    .heart-icon {
+      &.active {
+        color: vars.$horror-color;
+      }
+    }
+  }
+}
+
+.detail-view--animation {
+  color: vars.$animation-color;
+
+  .detail-view-header {
+    .heart-icon {
+      &.active {
+        color: vars.$animation-color;
+      }
+    }
+  }
+}
+
+.detail-view--drama {
+  color: vars.$drama-color;
+  .detail-view-header {
+    .heart-icon {
+      &.active {
+        color: vars.$drama-color;
+      }
+    }
+  }
+}
