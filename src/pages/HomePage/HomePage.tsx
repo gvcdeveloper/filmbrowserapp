@@ -4,7 +4,7 @@ import Carousel from '../../components/Carousel/Carousel';
 import { AppDispatch } from '../../redux/store';
 import { RootState } from '../../redux/store';
 import { fetchGenresAction } from '../../redux/slices/genresSlice';
-import { fetchFilmsByGenreAction } from '../../redux/slices/filmsSlice';
+import { fetchFilmsByGenreAction } from '../../redux/slices/filmsByGenreSlice';
 import { useNavigate } from 'react-router-dom';
 import './homePage.scss';
 
