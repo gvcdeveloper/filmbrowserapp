@@ -4,9 +4,9 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useEffect, useState } from 'react';
-import './carousel.scss';
 import Image from './Image';
-import Loader from './Loader/Loader';
+import Loader from '../Loader/Loader';
+import './carousel.scss';
 
 type Slide = {
   title: string;
