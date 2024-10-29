@@ -22,7 +22,7 @@ This client browser app allows you to find a movie in three (or more) genres (Ho
 
 ## Get Started
 
-1. Clone el repositorio:
+1. Clone the respository:
    ```bash
    git clone https://github.com/gvcdeveloper/filmbrowserapp.git
    ```
