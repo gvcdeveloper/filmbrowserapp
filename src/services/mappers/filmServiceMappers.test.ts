@@ -14,6 +14,8 @@ describe('FilmServiceMappers functions', () => {
         adult: false,
         overview: 'An excellent movie',
         poster_path: '/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
+        backdrop_path: '/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
+        tagline: 'Some tagline',
       };
 
       const result = movieByIdFromAPIMapper(movieFromAPI);
@@ -23,7 +25,11 @@ describe('FilmServiceMappers functions', () => {
         title: 'Venom',
         adult: false,
         overview: 'An excellent movie',
-        posterImgURL: '/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
+        posterImgURL:
+          'https://image.tmdb.org/t/p/w500/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
+        imgUrl:
+          'https://image.tmdb.org/t/p/w500/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg',
+        tagline: 'Some tagline',
       });
     });
   });

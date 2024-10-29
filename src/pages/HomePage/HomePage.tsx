@@ -4,7 +4,7 @@ import Carousel from '../../components/Carousel/Carousel';
 import { AppDispatch } from '../../redux/store';
 import { RootState } from '../../redux/store';
 import { fetchGenresAction } from '../../redux/slices/genresSlice';
-import { fetchFilmsByGenreAction } from '../../redux/slices/filmsSlice';
+import { fetchFilmsByGenreAction } from '../../redux/slices/filmsByGenreSlice';
 import { useNavigate } from 'react-router-dom';
 import './homePage.scss';
 
@@ -19,8 +19,8 @@ const HomePage = (): JSX.Element => {
     error,
   } = useSelector((state: RootState) => state.filmsByGenre);
 
-  const handleGoToDetails = (id: number) => {
-    navigate(`/details/${id}`);
+  const handleGoToDetails = (genre: string) => (id: number) => {
+    navigate(`/details/${genre.toLowerCase()}/${id}`);
   };
 
   useEffect(() => {
@@ -62,13 +62,13 @@ const HomePage = (): JSX.Element => {
   return (
     <>
       {filmsByGenre &&
-        genres?.map((genreName: string) => {
+        genres?.map((genreName: string, index: number) => {
           return (
-            <div className="film-section">
+            <div className="film-section" key={`${genreName}-${index}`}>
               <Carousel
                 carouselTitle={`${genreName} Movies`}
                 items={filmsByGenre[genreName] || []}
-                handleOnClick={handleGoToDetails}
+                handleOnClick={handleGoToDetails(genreName)}
               />
             </div>
           );

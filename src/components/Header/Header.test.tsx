@@ -1,7 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import logoDark from '../../assets/images/logo/logo-dark.svg';
+
 import Header from './Header';
+
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
+  useNavigate: vi.fn(),
+}));
 
 describe('Header component', () => {
   it('renders correctly with items', () => {

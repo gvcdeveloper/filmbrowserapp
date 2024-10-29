@@ -3,17 +3,27 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { fetchFilmByIDAction } from '../../redux/slices/filmDetailSlice';
+import { addToWishlist } from '../../redux/slices/wishlistSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Image from '../../components/Carousel/Image';
+import { categoryClassMapper } from '../../utils/categoryClassMapper';
 import './filmDetailPage.scss';
 
 const FilmDetailPage = (): JSX.Element => {
-  const { id } = useParams<{ id: string }>();
+  const { id, genre } = useParams<{ id: string; genre: string }>();
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector((state: RootState) => state.filmDetail);
+  const { data: wishlistedData } = useSelector(
+    (state: RootState) => state.wishlist
+  );
   const [loading, setLoading] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
+
+  const genresClassDifferentiation: { [key: string]: string } =
+    categoryClassMapper('detail-view', import.meta.env.VITE_GENRES.split(','));
+  const customClass =
+    genresClassDifferentiation[genre?.toLowerCase() || 'default'];
 
   useEffect(() => {
     if (id) {
@@ -24,12 +34,27 @@ const FilmDetailPage = (): JSX.Element => {
     }
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (id && wishlistedData) checkWishlisted();
+  }, []);
+
+  const checkWishlisted = useCallback(() => {
+    return wishlistedData.find(
+      (item: any) => item.id.toString() === id?.toString()
+    )
+      ? setIsWishlisted(true)
+      : setIsWishlisted(false);
+  }, [id]);
+
   const handleWishlistToggle = useCallback(() => {
-    setIsWishlisted(!isWishlisted);
-  }, [isWishlisted, setIsWishlisted]);
+    if (data) {
+      setIsWishlisted(!isWishlisted);
+      dispatch(addToWishlist(data));
+    }
+  }, [isWishlisted, setIsWishlisted, data]);
 
   return (
-    <div className="detail-view">
+    <div className={`detail-view ${customClass}`}>
       <Image
         src={data?.posterImgURL || ''}
         alt="Detail"
