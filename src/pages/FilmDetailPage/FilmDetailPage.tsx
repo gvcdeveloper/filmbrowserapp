@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Image from '../../components/Carousel/Image';
 import './filmDetailPage.scss';
-import { Film } from '../../types/models/films';
 
 const FilmDetailPage = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
@@ -30,12 +29,10 @@ const FilmDetailPage = (): JSX.Element => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    debugger;
     if (id && wishlistedData) checkWishlisted();
   }, []);
 
   const checkWishlisted = useCallback(() => {
-    debugger;
     return wishlistedData.find(
       (item: any) => item.id.toString() === id?.toString()
     )
