@@ -1,0 +1,15 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+
+  .empty-list {
+    font-size: vars.$font-size-lg;
+  }
+}

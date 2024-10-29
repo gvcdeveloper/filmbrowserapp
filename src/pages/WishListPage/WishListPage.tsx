@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '../../redux/store';
 import { removeFromWishlist } from '../../redux/slices/wishlistSlice';
 import { useCallback } from 'react';
 import './wishListPage.scss';
+import EmptyList from '../../components/EmptyList/EmptyList';
 
 const WishListPage = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,6 +32,9 @@ const WishListPage = (): JSX.Element => {
           />
         </div>
       ))}
+      {data.length === 0 && (
+        <EmptyList message="There is no film in your wish list" />
+      )}
     </div>
   );
 };
