@@ -1,0 +1,93 @@
+@use '../../styles/abstracts/variables' as vars;
+
+.detail-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: vars.$sm-padding;
+
+  .detail-view-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .detail-view-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .detail-view-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .heart-icon {
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &.active {
+        color: vars.$red;
+        animation: pop 0.3s ease;
+      }
+    }
+  }
+
+  .detail-view-title {
+    font-size: vars.$font-size-xl;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-view-tagline {
+    font-size: vars.$font-size-lg;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    color: vars.$gray;
+  }
+
+  .detail-view-overview {
+    font-size: vars.$font-size-md;
+    color: vars.$white;
+  }
+
+  @media (min-width: vars.$breakpoint-md) {
+    padding: vars.$sm-padding;
+
+    .detail-view-title {
+      font-size: vars.$font-size-xl;
+    }
+
+    .detail-view-tagline {
+      font-size: vars.$font-size-lg;
+    }
+
+    .detail-view-overview {
+      font-size: vars.$font-size-md;
+    }
+  }
+
+  @media (min-width: vars.$breakpoint-lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+
+    .detail-view-image,
+    .detail-view-content {
+      width: 100%;
+    }
+
+    .detail-view-title {
+      font-size: vars.$font-size-xxl;
+    }
+
+    .detail-view-tagline {
+      font-size: vars.$font-size-lg;
+    }
+  }
+}

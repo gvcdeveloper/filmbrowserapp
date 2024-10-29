@@ -5,4 +5,5 @@ export type Film = {
   posterImgURL?: string;
   overview?: string;
   adult?: boolean;
+  tagline?: string;
 };

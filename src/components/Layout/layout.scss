@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: vars.$gray3;
+  background-color: vars.$black;
 
   main {
     flex: 1;
@@ -15,6 +15,9 @@
     background-color: vars.$black;
     padding: 0 vars.$sm-padding;
     color: vars.$white;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1500px;
   }
 }
 
