@@ -1,6 +1,6 @@
 import './loader.scss';
 
-const Loader = () => {
+const Loader = (): JSX.Element => {
   return (
     <div className="loader">
       <div className="spinner"></div>

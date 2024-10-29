@@ -17,7 +17,6 @@ const initialState: GenreState = {
 export const fetchGenresAction = createAsyncThunk(
   'genres/fetchGenresAction',
   async () => {
-    //fake delay: await new Promise((resolve) => setTimeout(resolve, 2000));
     const response = await fetchGenreList({ lang: 'en-US' });
     return response;
   }

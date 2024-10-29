@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../../components/Carousel/Carousel';
 import { AppDispatch } from '../../redux/store';
@@ -6,22 +6,27 @@ import { RootState } from '../../redux/store';
 import { fetchGenresAction } from '../../redux/slices/genresSlice';
 import { fetchFilmsByGenreAction } from '../../redux/slices/filmsByGenreSlice';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
 import './homePage.scss';
 
 const HomePage = (): JSX.Element => {
-  const navigate = useNavigate();
   const genres = import.meta.env.VITE_GENRES.split(',');
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector((state: RootState) => state.genres);
+
+  const { data, loading } = useSelector((state: RootState) => state.genres);
   const {
     data: filmsByGenre,
-    loading,
+    loading: filmsByGenereLoading,
     error,
   } = useSelector((state: RootState) => state.filmsByGenre);
 
-  const handleGoToDetails = (genre: string) => (id: number) => {
-    navigate(`/details/${genre.toLowerCase()}/${id}`);
-  };
+  const handleGoToDetails = useCallback(
+    (genre: string) => (id: number) => {
+      navigate(`/details/${genre.toLowerCase()}/${id}`);
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -45,8 +50,7 @@ const HomePage = (): JSX.Element => {
 
   useEffect(() => {
     const fetchData = async () => {
-      //TODO: change
-      if (data['Horror']) {
+      if (Object.keys(data).length > 0) {
         await genres.forEach((genreName: string) => {
           const genre = { name: genreName, id: data[genreName] };
           dispatch(fetchFilmsByGenreAction(genre));
@@ -56,7 +60,7 @@ const HomePage = (): JSX.Element => {
     fetchData();
   }, [dispatch, data]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading || filmsByGenereLoading) return <Loader />;
   if (error) return <div>Error: {error}</div>;
 
   return (
