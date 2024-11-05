@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -9,15 +9,15 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Image from '../../components/Carousel/Image';
 import { categoryClassMapper } from '../../utils/categoryClassMapper';
 import './filmDetailPage.scss';
+import Loader from '../../components/Loader/Loader';
 
 const FilmDetailPage = (): JSX.Element => {
   const { id, genre } = useParams<{ id: string; genre: string }>();
   const dispatch = useDispatch<AppDispatch>();
-  const { data } = useSelector((state: RootState) => state.filmDetail);
+  const { data, loading } = useSelector((state: RootState) => state.filmDetail);
   const { data: wishlistedData } = useSelector(
     (state: RootState) => state.wishlist
   );
-  const [loading, setLoading] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const genresClassDifferentiation: { [key: string]: string } =
@@ -53,14 +53,17 @@ const FilmDetailPage = (): JSX.Element => {
     }
   }, [isWishlisted, setIsWishlisted, data]);
 
+  if (loading) return <Loader />;
+
   return (
     <div className={`detail-view ${customClass}`}>
-      <Image
-        src={data?.posterImgURL || ''}
-        alt="Detail"
-        className="detail-view-image"
-        setLoading={setLoading}
-      />
+      <Suspense fallback={<Loader />}>
+        <Image
+          src={data?.posterImgURL || ''}
+          alt="Detail"
+          className="detail-view-image"
+        />
+      </Suspense>
       <div className="detail-view-content">
         <div className="detail-view-header">
           <h2 className="detail-view-title">{data?.title}</h2>

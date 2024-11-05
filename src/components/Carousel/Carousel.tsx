@@ -3,7 +3,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useCallback, useEffect, useState } from 'react';
+import { Suspense, useCallback, useEffect, useState } from 'react';
 import Image from './Image';
 import Loader from '../Loader/Loader';
 import './carousel.scss';
@@ -29,7 +29,6 @@ const Carousel = ({
 }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
-  const [loading, setLoading] = useState(true);
 
   const updateItemsPerPage = useCallback(() => {
     const width = window.innerWidth;
@@ -88,12 +87,9 @@ const Carousel = ({
               >
                 {item.title}
               </h4>
-              {loading && <Loader />}
-              <Image
-                src={item.imgUrl}
-                alt={item.title}
-                setLoading={setLoading}
-              />
+              <Suspense fallback={<Loader />}>
+                <Image src={item.imgUrl} alt={item.title} />
+              </Suspense>
             </div>
           ))}
         </div>
