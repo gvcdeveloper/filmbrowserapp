@@ -1,10 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { sliderItemsMock } from '../../__mocks__/sliderItemsMock';
 import Carousel from './Carousel';
 
 describe('Carousel component', () => {
-  it('renders correctly with items', () => {
+  it('renders correctly with items', async () => {
     const onClickSpy = vi.fn();
     render(
       <Carousel
@@ -14,11 +14,13 @@ describe('Carousel component', () => {
       />
     );
 
-    expect(screen.getByAltText(sliderItemsMock[0].title)).toBeInTheDocument();
-    expect(screen.getByAltText(sliderItemsMock[0].title)).toHaveAttribute(
-      'src',
-      sliderItemsMock[0].imgUrl
-    );
+    await waitFor(() => {
+      expect(screen.getByAltText(sliderItemsMock[0].title)).toBeInTheDocument();
+      expect(screen.getByAltText(sliderItemsMock[0].title)).toHaveAttribute(
+        'src',
+        sliderItemsMock[0].imgUrl
+      );
+    });
   });
 
   it('when clicking on next button with 4 elements per page, only those 4 elements per page are shown', async () => {
