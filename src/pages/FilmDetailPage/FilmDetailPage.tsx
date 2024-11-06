@@ -56,33 +56,38 @@ const FilmDetailPage = (): JSX.Element => {
   if (loading) return <Loader />;
 
   return (
-    <div className={`detail-view ${customClass}`}>
-      <Suspense fallback={<Loader />}>
-        <Image
-          src={data?.posterImgURL || ''}
-          alt="Detail"
-          className="detail-view-image"
-        />
-      </Suspense>
-      <div className="detail-view-content">
-        <div className="detail-view-header">
-          <h2 className="detail-view-title">{data?.title}</h2>
-          <button
-            className="wishlist-icon"
-            onClick={handleWishlistToggle}
-            data-testid="wishlist-icon"
-          >
-            <FontAwesomeIcon
-              icon={faHeart}
-              size="3x"
-              className={`heart-icon ${isWishlisted ? 'active' : ''}`}
+    <>
+      {loading && <Loader />}
+      {data && (
+        <div className={`detail-view ${customClass}`}>
+          <Suspense fallback={<Loader />}>
+            <Image
+              src={data?.posterImgURL || ''}
+              alt="Detail"
+              className="detail-view-image"
             />
-          </button>
+          </Suspense>
+          <div className="detail-view-content">
+            <div className="detail-view-header">
+              <h2 className="detail-view-title">{data?.title}</h2>
+              <button
+                className="wishlist-icon"
+                onClick={handleWishlistToggle}
+                data-testid="wishlist-icon"
+              >
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  size="3x"
+                  className={`heart-icon ${isWishlisted ? 'active' : ''}`}
+                />
+              </button>
+            </div>
+            <h3 className="detail-view-tagline">{data?.tagline}</h3>
+            <p className="detail-view-overview">{data?.overview}</p>
+          </div>
         </div>
-        <h3 className="detail-view-tagline">{data?.tagline}</h3>
-        <p className="detail-view-overview">{data?.overview}</p>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

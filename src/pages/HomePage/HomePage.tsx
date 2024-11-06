@@ -14,7 +14,9 @@ const HomePage = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { data, loading } = useSelector((state: RootState) => state.genres);
+  const { data: genresData, loading: genresLoading } = useSelector(
+    (state: RootState) => state.genres
+  );
   const {
     data: filmsByGenre,
     loading: filmsByGenereLoading,
@@ -50,22 +52,23 @@ const HomePage = (): JSX.Element => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (Object.keys(data).length > 0) {
+      if (Object.keys(genresData).length > 0) {
         await genres.forEach((genreName: string) => {
-          const genre = { name: genreName, id: data[genreName] };
+          const genre = { name: genreName, id: genresData[genreName] };
           dispatch(fetchFilmsByGenreAction(genre));
         });
       }
     };
     fetchData();
-  }, [dispatch, data]);
+  }, [dispatch, genresData]);
 
-  if (loading || filmsByGenereLoading) return <Loader />;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <>
-      {filmsByGenre &&
+      {(genresLoading || filmsByGenereLoading) && <Loader />}
+      {genresData &&
+        filmsByGenre &&
         genres?.map((genreName: string, index: number) => {
           return (
             <div className="film-section" key={`${genreName}-${index}`}>
