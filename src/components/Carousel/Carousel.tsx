@@ -3,7 +3,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { memo, Suspense, useCallback, useEffect, useState } from 'react';
 import Image from './Image';
 import Loader from '../Loader/Loader';
 import './carousel.scss';
@@ -114,4 +114,4 @@ const Carousel = ({
   );
 };
 
-export default Carousel;
+export default memo(Carousel);
